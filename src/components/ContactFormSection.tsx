@@ -55,7 +55,7 @@ export const ContactFormSection: React.FC = () => {
     );
 
     // Deep link WhatsApp URL
-    const waUrl = `https://wa.me/919420170156?text=${waText}`;
+    const waUrl = `https://wa.me/919405451507?text=${waText}`;
 
     trackFormSubmission('contact_section', {
       service: formData.serviceInterested,
@@ -100,8 +100,8 @@ export const ContactFormSection: React.FC = () => {
                 <div>
                   <h3 className="text-sm font-bold text-[#42403F] mb-1">Agency Headquarters</h3>
                   <p className="text-xs text-[#42403F]/80 leading-relaxed font-normal">
-                    Mangalmurti Apartment, House No 825,<br />
-                    Varawade, Achara Road, Kankavli
+                    Snehpriya Residency, Vengurla-Belgaum Highway,<br />
+                    Kolgaon, Sawantwadi, Sindhudurg, Maharashtra 416510
                   </p>
                 </div>
               </div>
@@ -111,14 +111,7 @@ export const ContactFormSection: React.FC = () => {
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-[#42403F] mb-1">Direct Phone Lines</h3>
-                  <a
-                    href="tel:+919420170156"
-                    onClick={() => trackPhoneClick('contact_section', '+91 94201 70156')}
-                    className="block text-xs font-medium text-[#2E3F8C] hover:underline cursor-pointer"
-                  >
-                    +91 94201 70156
-                  </a>
+                  <h3 className="text-sm font-bold text-[#42403F] mb-1">Direct Phone Line</h3>
                   <a
                     href="tel:+919405451507"
                     onClick={() => trackPhoneClick('contact_section', '+91 94054 51507')}

@@ -49,18 +49,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onRequestQuote }) =>
             <div className="pt-2 space-y-1.5 text-xs text-white/80">
               <p className="flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-[#D8DCF4]" />
-                <span>Mangalmurti Apartment, House No 825, Varawade, Kankavli</span>
+                <span>Snehpriya Residency, Vengurla-Belgaum Highway, Kolgaon, Sawantwadi, Sindhudurg, Maharashtra 416510</span>
               </p>
               <p className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-[#D8DCF4]" />
-                <a
-                  href="tel:+919420170156"
-                  onClick={() => trackPhoneClick('footer', '+91 94201 70156')}
-                  className="hover:underline text-white"
-                >
-                  +91 94201 70156
-                </a>
-                <span>/</span>
                 <a
                   href="tel:+919405451507"
                   onClick={() => trackPhoneClick('footer', '+91 94054 51507')}
@@ -89,32 +81,32 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onRequestQuote }) =>
             </h3>
             <ul className="space-y-2 text-xs text-white/80">
               <li>
-                <button onClick={() => onNavigate('/', 'hero')} className="hover:text-white transition-colors">
+                <button onClick={() => onNavigate('/', 'hero')} className="hover:text-white transition-colors cursor-pointer">
                   Home
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/', 'about')} className="hover:text-white transition-colors">
+                <button onClick={() => onNavigate('/', 'about')} className="hover:text-white transition-colors cursor-pointer">
                   About Us
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/', 'services')} className="hover:text-white transition-colors">
-                  Services
+                <button onClick={() => onNavigate('/blog')} className="hover:text-white transition-colors cursor-pointer font-semibold text-white">
+                  Strategic Blog
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/', 'work')} className="hover:text-white transition-colors">
-                  Case Studies & Work
+                <button onClick={() => onNavigate('/', 'work')} className="hover:text-white transition-colors cursor-pointer">
+                  Case Studies &amp; Work
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/', 'faq')} className="hover:text-white transition-colors">
+                <button onClick={() => onNavigate('/', 'faq')} className="hover:text-white transition-colors cursor-pointer">
                   FAQ
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/', 'contact')} className="hover:text-white transition-colors">
+                <button onClick={() => onNavigate('/', 'contact')} className="hover:text-white transition-colors cursor-pointer">
                   Contact
                 </button>
               </li>
@@ -169,9 +161,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onRequestQuote }) =>
           </p>
 
           <div className="flex items-center gap-4">
-            <span className="hover:text-white cursor-pointer">Privacy Policy</span>
+            <button
+              onClick={() => onNavigate('/privacy-policy')}
+              className="hover:text-white cursor-pointer transition-colors"
+            >
+              Privacy Policy
+            </button>
             <span>•</span>
-            <span className="hover:text-white cursor-pointer">Terms of Service</span>
+            <button
+              onClick={() => onNavigate('/terms-of-service')}
+              className="hover:text-white cursor-pointer transition-colors"
+            >
+              Terms &amp; Conditions
+            </button>
           </div>
         </div>
 

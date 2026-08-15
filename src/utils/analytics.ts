@@ -65,7 +65,7 @@ export const trackMetaPixelCustomEvent = (
 export const trackPhoneClick = (location: string, phoneNumber?: string) => {
   trackEvent('phone_click', {
     click_location: location,
-    phone_number: phoneNumber || '+91 91728 20625',
+    phone_number: phoneNumber || '+91 94054 51507',
   });
 };
 

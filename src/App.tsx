@@ -10,11 +10,12 @@ import { initUtmCapture } from './utils/utm';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ClientTrustStrip } from './components/ClientTrustStrip';
-import { ServicesGrid } from './components/ServicesGrid';
+import { BlogPreview } from './components/BlogPreview';
+import { BlogListPage } from './components/BlogListPage';
+import { BlogPostPage } from './components/BlogPostPage';
 import { CompanyIntro } from './components/CompanyIntro';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { ProcessTimeline } from './components/ProcessTimeline';
-import { SimpleSolutionsPanel } from './components/SimpleSolutionsPanel';
 import { IndustriesServed } from './components/IndustriesServed';
 import { CaseStudiesSection } from './components/CaseStudiesSection';
 import { TeamSection } from './components/TeamSection';
@@ -25,17 +26,53 @@ import { FinalCtaBanner } from './components/FinalCtaBanner';
 import { Footer } from './components/Footer';
 import { FloatingWhatsappButton } from './components/FloatingWhatsappButton';
 import { IndustryPage } from './components/IndustryPage';
+import { PrivacyPolicyPage } from './components/PrivacyPolicyPage';
+import { TermsAndConditionsPage } from './components/TermsAndConditionsPage';
 import { QuoteModal } from './components/QuoteModal';
 import { AiAdvisorModal } from './components/AiAdvisorModal';
 
 export function App() {
-  const [currentPath, setCurrentPath] = useState<RoutePath>('/');
+  const [currentPath, setCurrentPath] = useState<RoutePath>(() => {
+    if (typeof window === 'undefined') return '/';
+
+    // 1. On initial load, if redirected from 404.html with a deep-link path stored in sessionStorage:
+    const redirectPath = sessionStorage.getItem('redirectPath');
+    if (redirectPath && redirectPath !== '/') {
+      // Establish Home as the base entry, then push the actual target on top
+      window.history.replaceState({ path: '/' }, '', '/');
+      window.history.pushState({ path: redirectPath }, '', redirectPath);
+      sessionStorage.removeItem('redirectPath');
+      const cleanPath = redirectPath.split('?')[0].split('#')[0] as RoutePath;
+      return cleanPath || '/';
+    }
+    if (redirectPath) {
+      sessionStorage.removeItem('redirectPath');
+    }
+
+    // 2. If direct URL pathname exists and isn't root (e.g. deep link landed directly):
+    const pathname = window.location.pathname as RoutePath;
+    if (pathname && pathname !== '/') {
+      window.history.replaceState({ path: '/' }, '', '/');
+      window.history.pushState({ path: pathname }, '', pathname + window.location.search + window.location.hash);
+      return pathname;
+    }
+
+    // 3. Root fallback — ensure initial history state is set
+    if (!window.history.state) {
+      window.history.replaceState({ path: '/' }, '', '/' + window.location.search + window.location.hash);
+    }
+
+    return '/';
+  });
+
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [quoteIndustryContext, setQuoteIndustryContext] = useState<string | undefined>(undefined);
+  const [quoteServiceContext, setQuoteServiceContext] = useState<string | undefined>(undefined);
   const [isAiAdvisorOpen, setIsAiAdvisorOpen] = useState(false);
 
-  const handleOpenQuoteModal = (industryContext?: string) => {
+  const handleOpenQuoteModal = (industryContext?: string, serviceName?: string) => {
     setQuoteIndustryContext(industryContext);
+    setQuoteServiceContext(serviceName);
     setIsQuoteModalOpen(true);
   };
 
@@ -44,13 +81,46 @@ export function App() {
     initUtmCapture();
   }, []);
 
-  // Reset scroll to top on route change
+  // Listen to browser Back/Forward (popstate) navigation events
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const handlePopState = (event: PopStateEvent) => {
+      const targetPath = (event.state?.path || window.location.pathname || '/') as RoutePath;
+      const cleanPath = targetPath.split('?')[0].split('#')[0] as RoutePath;
+      setCurrentPath(cleanPath || '/');
+
+      if (window.location.hash) {
+        const hash = window.location.hash.replace('#', '');
+        setTimeout(() => {
+          const el = document.getElementById(hash);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      } else {
+        window.scrollTo(0, 0);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Reset scroll to top on route change (unless deep-linking to an anchor hash)
+  useEffect(() => {
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
   }, [currentPath]);
 
-  // Sync scroll on route change or hash navigation
+  // Sync route change and push history entry so Android/browser back button works reliably
   const handleNavigate = (path: RoutePath, hash?: string) => {
+    const targetUrl = path + (hash ? `#${hash}` : '');
+    const currentUrl = currentPath + (window.location.hash || '');
+
+    if (targetUrl !== currentUrl) {
+      window.history.pushState({ path, hash }, '', targetUrl);
+    }
+
     setCurrentPath(path);
 
     if (path === '/' && hash) {
@@ -73,19 +143,23 @@ export function App() {
     'url': 'https://beaconandbolt.com',
     'address': {
       '@type': 'PostalAddress',
-      'streetAddress': 'Mangalmurti Apartment, House No 825, Varawade, Achara Road',
-      'addressLocality': 'Kankavli',
+      'streetAddress': 'Snehpriya Residency, Vengurla-Belgaum Highway, Kolgaon',
+      'addressLocality': 'Sawantwadi',
       'addressRegion': 'Maharashtra',
-      'countryName': 'India'
+      'postalCode': '416510',
+      'addressCountry': 'IN'
     },
-    'telephone': ['+919420170156', '+919405451507'],
+    'telephone': '+91-94054-51507',
     'email': 'beaconandbolt@gmail.com',
-    'areaServed': ['Goa', 'Sindhudurg', 'Kankavli', 'Maharashtra', 'India']
+    'areaServed': ['Goa', 'Sindhudurg', 'Sawantwadi', 'Maharashtra', 'India']
   };
 
   const isIndustryRoute = currentPath.startsWith('/industries/');
   const rawSlug = isIndustryRoute ? currentPath.replace('/industries/', '') : '';
   const industrySlug = rawSlug === 'e-commerce-retail' ? 'ecommerce-retail' : rawSlug;
+
+  const isBlogDetailRoute = currentPath.startsWith('/blog/');
+  const blogSlug = isBlogDetailRoute ? currentPath.replace('/blog/', '') : '';
 
   return (
     <div className="min-h-screen bg-[#FCFCFD] text-[#42403F] font-sans antialiased selection:bg-[#2E3F8C] selection:text-white">
@@ -106,7 +180,22 @@ export function App() {
 
       {/* Main Content Router */}
       <main>
-        {isIndustryRoute ? (
+        {currentPath === '/privacy-policy' ? (
+          <PrivacyPolicyPage onNavigate={handleNavigate} />
+        ) : currentPath === '/terms-and-conditions' || currentPath === '/terms-of-service' ? (
+          <TermsAndConditionsPage onNavigate={handleNavigate} />
+        ) : currentPath === '/blog' ? (
+          <BlogListPage
+            onNavigate={handleNavigate}
+            onRequestQuote={() => handleOpenQuoteModal()}
+          />
+        ) : isBlogDetailRoute ? (
+          <BlogPostPage
+            slug={blogSlug}
+            onNavigate={handleNavigate}
+            onRequestQuote={(ctx) => handleOpenQuoteModal(undefined, ctx)}
+          />
+        ) : isIndustryRoute ? (
           <IndustryPage
             slug={industrySlug}
             onNavigate={handleNavigate}
@@ -123,10 +212,8 @@ export function App() {
             {/* Section 3: Client Trust Strip */}
             <ClientTrustStrip />
 
-            {/* Section 4: Services Grid (11 Categories) */}
-            <ServicesGrid
-              onRequestQuote={() => handleOpenQuoteModal()}
-            />
+            {/* Section 4: Lightweight Blog Preview & Intelligence Teaser (Replaces old Services section) */}
+            <BlogPreview onNavigate={handleNavigate} />
 
             {/* Section 5: Company Introduction */}
             <CompanyIntro />
@@ -136,12 +223,6 @@ export function App() {
 
             {/* Section 7: Process Timeline (Horizontal Flow) */}
             <ProcessTimeline />
-
-            {/* Section 7.5: Simple Solutions Panel (Full-width Royal Indigo, 1-4 numbered list) */}
-            <SimpleSolutionsPanel
-              onGetStarted={() => handleOpenQuoteModal()}
-              onReadMore={() => handleNavigate('/', 'services')}
-            />
 
             {/* Section 8: Industries Served (Simple linking tag/pill grid ONLY) */}
             <IndustriesServed onNavigate={handleNavigate} />
@@ -183,6 +264,7 @@ export function App() {
       <QuoteModal
         isOpen={isQuoteModalOpen}
         onClose={() => setIsQuoteModalOpen(false)}
+        preselectedService={quoteServiceContext}
         industryContext={quoteIndustryContext}
       />
 

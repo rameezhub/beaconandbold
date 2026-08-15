@@ -177,15 +177,6 @@ export const CASE_STUDIES_LIST: CaseStudyItem[] = [
     industrySlug: 'ecommerce-retail'
   },
   {
-    id: 'hotel-bhavyam',
-    clientName: 'Hotel Bhavyam',
-    title: 'Direct Booking Engine & Hospitality Branding',
-    oneLiner: 'Drove direct booking calls and room inquiries through consistent brand storytelling and creative social content.',
-    servicesDelivered: 'Social Media Management',
-    result: '+40% Direct Calls',
-    industrySlug: 'hotels-hospitality'
-  },
-  {
     id: 'ik-tours',
     clientName: 'IK Tours & Travels',
     title: 'Tourism Lead Generation & Destination Campaigns',
@@ -297,28 +288,28 @@ export const FAQS_LIST: FaqItem[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    id: '1',
-    title: '5 Brand Positioning Rules for High-Ticket Real Estate Projects in 2026',
-    category: 'Real Estate Strategy',
-    date: 'August 2026',
-    readTime: '4 min read',
-    snippet: 'Discover how targeted visual identity, high-impact creative storytelling, and NRI buyer funnels build sales momentum before ground-breaking.'
-  },
-  {
-    id: '2',
-    title: 'How Hospitality Brands Can Cut OTA Commissions with Direct Booking Funnels',
-    category: 'Hospitality Growth',
-    date: 'July 2026',
+    id: 'online-branding',
+    title: 'The Complete Guide to Online Branding for Growing Businesses',
+    category: 'Brand Strategy',
+    date: 'Jan 2025',
     readTime: '5 min read',
-    snippet: 'Learn the exact social content and WhatsApp automation strategy Hotel Bhavyam used to boost direct phone inquiries by +40%.'
+    snippet: 'Discover how consistent digital brand presence, distinctive visual identity, and strategic positioning build long-term commercial value.'
   },
   {
-    id: '3',
-    title: 'The AI-Powered Performance Marketing Stack for Local Enterprise Growth',
-    category: 'Digital Strategy',
-    date: 'June 2026',
+    id: 'marketing',
+    title: 'High-ROI Performance Marketing: Turning Ad Spend into Scalable Growth',
+    category: 'Performance Marketing',
+    date: 'Jan 2025',
     readTime: '6 min read',
-    snippet: 'Why combining intelligent ad targeting with immediate WhatsApp CRM response yields 2.4x higher lead conversion rates.'
+    snippet: 'Explore how data-driven multi-channel advertising on Meta and Google Search drives qualified customer acquisition while maintaining profitability.'
+  },
+  {
+    id: 'social-media-management',
+    title: 'Strategic Social Media Management: Beyond Vanity Metrics to True Brand Authority',
+    category: 'Social Media',
+    date: 'Jan 2025',
+    readTime: '5 min read',
+    snippet: 'How modern businesses use targeted short-form video, thought leadership content, and active engagement to turn followers into paying clients.'
   }
 ];
 
@@ -342,15 +333,15 @@ export const INDUSTRY_PAGES_DATA: Record<string, IndustryData> = {
     slug: 'hotels-hospitality',
     title: 'Hotels & Hospitality Marketing',
     heroHeadline: 'Driving Direct Bookings & Guest Loyalty for Hospitality Brands',
-    heroStat: '+40% Direct Phone Calls',
-    description: 'Elevate guest experiences and reduce dependency on high-commission OTAs with targeted social management, luxury visual identity, and direct phone booking funnels.',
+    heroStat: '+40% Direct Inquiries',
+    description: 'Elevate guest experiences and reduce dependency on high-commission OTAs with targeted social management, luxury visual identity, and direct booking funnels.',
     whyChoosePoints: [
       'Bespoke visual identity and social content highlighting dining and amenities.',
       'Direct call and WhatsApp booking engine setups that bypass OTA commission fees.',
       'Localized seasonal campaign offers driving weekend and holiday occupancy.',
       'End-to-end photo and video production showcasing suites and dining.'
     ],
-    caseStudyId: 'hotel-bhavyam',
+    caseStudyId: '',
     applicableServiceIds: ['brand-identity', 'creative-design', 'digital-marketing', 'production', 'technology-web']
   },
   'real-estate-property': {
@@ -410,7 +401,7 @@ export const INDUSTRY_PAGES_DATA: Record<string, IndustryData> = {
       'Localized geo-targeted ads driving weekend dining and party bookings.',
       'Physical menu design, table tent graphics, and event branding.'
     ],
-    caseStudyId: 'hotel-bhavyam',
+    caseStudyId: '',
     applicableServiceIds: ['brand-identity', 'creative-design', 'digital-marketing', 'production', 'offline-marketing']
   }
 };

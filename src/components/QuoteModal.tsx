@@ -177,7 +177,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
       );
     }
 
-    const waUrl = `https://wa.me/919420170156?text=${waText}`;
+    const waUrl = `https://wa.me/919405451507?text=${waText}`;
 
     trackFormSubmission(industryContext ? 'industry_quote' : 'general_quote', {
       industry: industryContext || 'General',

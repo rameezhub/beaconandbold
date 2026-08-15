@@ -31,8 +31,8 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({
           </p>
         </div>
 
-        {/* Royal Indigo Dark Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Royal Indigo Dark Cards Grid (Balanced 4-card layout) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
           {CASE_STUDIES_LIST.map((study) => (
             <div
               key={study.id}

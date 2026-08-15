@@ -4,14 +4,19 @@ export type RoutePath =
   | '/services'
   | '/industries'
   | '/work'
+  | '/blog'
   | '/faq'
   | '/contact'
+  | '/privacy-policy'
+  | '/terms-and-conditions'
+  | '/terms-of-service'
   | '/industries/tourism-travel'
   | '/industries/hotels-hospitality'
   | '/industries/real-estate-property'
   | '/industries/ecommerce-retail'
   | '/industries/b2b-industrial-safety'
-  | '/industries/dining-restaurants';
+  | '/industries/dining-restaurants'
+  | `/blog/${string}`;
 
 export interface ServiceCategory {
   id: string;

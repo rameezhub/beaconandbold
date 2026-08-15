@@ -24,7 +24,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navLinks = [
     { label: 'Home', path: '/' as RoutePath, hash: 'hero' },
     { label: 'About', path: '/' as RoutePath, hash: 'about' },
-    { label: 'Services', path: '/' as RoutePath, hash: 'services' },
+    { label: 'Blog', path: '/blog' as RoutePath },
     { label: 'Industries', path: '/' as RoutePath, hash: 'industries' },
     { label: 'Work', path: '/' as RoutePath, hash: 'work' },
     { label: 'FAQ', path: '/' as RoutePath, hash: 'faq' },
@@ -57,7 +57,9 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => {
-            const isActive = activeTab === link.label;
+            const isActive = link.label === 'Blog'
+              ? currentPath.startsWith('/blog')
+              : activeTab === link.label && currentPath === '/';
             return (
               <button
                 key={link.label}
