@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <!--
+    TODO before launch:
+    1. Replace GTM-XXXXXXX with real GTM Container ID
+    2. Replace YOUR_PIXEL_ID with real Meta Pixel ID
+    3. Configure GA4 property inside GTM (tag: GA4 Configuration)
+    4. Verify domain in Google Search Console (DNS or HTML tag method) and submit /sitemap.xml
+    5. Set up GTM triggers/tags for each dataLayer event above to fire into GA4 + Meta Pixel
+  -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beacon & Bolt | Real Estate & Property Strategy</title>
+
+    <!-- Google Search Console Verification -->
+    <!-- TODO: Replace content value with real verification code from Search Console (Settings > Ownership verification > HTML tag method) before launch -->
+    <meta name="google-site-verification" content="REPLACE_WITH_VERIFICATION_CODE" />
+
+    <!-- Google Analytics 4 -->
+    <!-- TODO: Replace G-XXXXXXXXXX with real GA4 Measurement ID before launch -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <!-- End Google Analytics 4 -->
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+    <!-- End Google Tag Manager (Placeholder ID: GTM-XXXXXXX - replace before launch) -->
+
+    <!-- GA4 Note: GA4 is managed through Google Tag Manager (GTM) Configuration Tag -->
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID'); // Replace YOUR_PIXEL_ID with real Meta Pixel ID before launch
+    fbq('track', 'PageView');
+    </script>
+    <!-- End Meta Pixel Code -->
+
+    <link rel="icon" type="image/jpeg" href="/src/assets/logo-1.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-[#FCFCFD] text-[#1d1b1a] font-sans antialiased selection:bg-[#2e3f8c] selection:text-white">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Meta Pixel (noscript) -->
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel (noscript) -->
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

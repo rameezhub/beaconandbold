@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body, input, textarea, select, button, p, li, a, span, label, .font-body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@layer utilities {
+  .dot-pattern {
+    background-image: radial-gradient(#BAB8BE 1.2px, transparent 1.2px);
+    background-size: 18px 18px;
+    opacity: 0.25;
+  }
+
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(186, 184, 190, 0.4);
+  }
+
+  .glass-panel-dark {
+    background: rgba(20, 39, 117, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+}
+
+:root {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Custom scrollbars for modals and tab navigation */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8f2f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c6c5d3;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #757682;
+}
