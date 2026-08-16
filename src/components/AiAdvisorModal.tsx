@@ -156,7 +156,7 @@ export const AiAdvisorModal: React.FC<AiAdvisorModalProps> = ({
                 {msg.sender === 'bot' && msg.actionType === 'whatsapp' && (
                   <div className="mt-3 pt-2.5 border-t border-[#BAB8BE]/20">
                     <a
-                      href={msg.actionUrl || 'https://wa.me/919405451507'}
+                      href={msg.actionUrl || 'https://wa.me/919420170156'}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#1EBE5D] text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow-xs transition-colors"
@@ -182,7 +182,7 @@ export const AiAdvisorModal: React.FC<AiAdvisorModalProps> = ({
                       <span>{msg.actionLabel || 'Request a Quote'}</span>
                     </button>
                     <a
-                      href="https://wa.me/919405451507"
+                      href="https://wa.me/919420170156"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 bg-white border border-[#BAB8BE]/40 text-[#42403F] hover:text-[#2E3F8C] hover:border-[#2E3F8C] px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors"

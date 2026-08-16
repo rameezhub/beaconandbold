@@ -6,7 +6,7 @@ export const FloatingWhatsappButton: React.FC = () => {
   const handleClick = () => {
     trackWhatsappClick('floating_button');
     const text = encodeURIComponent("Hello Beacon & Bolt team, I would like to inquire about your branding and growth services.");
-    window.open(`https://wa.me/919405451507?text=${text}`, '_blank', 'noopener,noreferrer');
+    window.open(`https://wa.me/919420170156?text=${text}`, '_blank', 'noopener,noreferrer');
   };
 
   return (

@@ -15,8 +15,8 @@ export interface AdvisorAnswer {
   matchedTopic?: string;
 }
 
-const WHATSAPP_URL = 'https://wa.me/919405451507?text=Hi%20Beacon%20%26%20Bolt%2C%20I%20have%20a%20question%20about%20your%20services.';
-const CONTACT_PHONE = '+91 9405451507';
+const WHATSAPP_URL = 'https://wa.me/919420170156?text=Hi%20Beacon%20%26%20Bolt%2C%20I%20have%20a%20question%20about%20your%20services.';
+const CONTACT_PHONE = '+91 94201 70156';
 const CONTACT_EMAIL = 'beaconandbolt@gmail.com';
 
 /**
@@ -66,7 +66,7 @@ export function getAdvisorResponse(userQuery: string): AdvisorAnswer {
     q.includes('office')
   ) {
     return {
-      text: `You can reach the Beacon & Bolt team directly via:\n\n• Phone: ${CONTACT_PHONE}\n• WhatsApp: +91 9405451507\n• Email: ${CONTACT_EMAIL}\n• Regional Focus: Goa, Sindhudurg, Kankavli, Mumbai, Pune, and global clients.\n\nFeel free to message us on WhatsApp or request a quote!`,
+      text: `You can reach the Beacon & Bolt team directly via:\n\n• Phone: ${CONTACT_PHONE}\n• WhatsApp: ${CONTACT_PHONE}\n• Email: ${CONTACT_EMAIL}\n• Regional Focus: Goa, Sindhudurg, Kankavli, Mumbai, Pune, and global clients.\n\nFeel free to message us on WhatsApp or request a quote!`,
       actionType: 'whatsapp',
       actionLabel: 'Chat on WhatsApp',
       actionUrl: WHATSAPP_URL,

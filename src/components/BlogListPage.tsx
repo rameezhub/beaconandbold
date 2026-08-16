@@ -203,7 +203,7 @@ export const BlogListPage: React.FC<BlogListPageProps> = ({
               Request Custom Proposal
             </button>
             <a
-              href="https://wa.me/919405451507?text=Hi%20Beacon%20%26%20Bolt%2C%20I%20read%20your%20blog%20and%20would%20like%20to%20discuss%20a%20strategy%20consultation."
+              href="https://wa.me/919420170156?text=Hi%20Beacon%20%26%20Bolt%2C%20I%20read%20your%20blog%20and%20would%20like%20to%20discuss%20a%20strategy%20consultation."
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#25D366] hover:bg-[#1EBE5D] text-white px-6 py-3 rounded-lg font-bold text-xs transition-colors shadow-md text-center"

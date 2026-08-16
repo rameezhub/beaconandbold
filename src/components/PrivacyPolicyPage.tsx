@@ -310,11 +310,11 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
                 <Phone className="w-4 h-4 text-[#2E3F8C] shrink-0" />
                 <span>Phone / WhatsApp: </span>
                 <a
-                  href="tel:+919405451507"
-                  onClick={() => trackPhoneClick('privacy_policy', '+91 94054 51507')}
+                  href="tel:+919420170156"
+                  onClick={() => trackPhoneClick('privacy_policy', '+91 94201 70156')}
                   className="font-semibold text-[#2E3F8C] hover:underline"
                 >
-                  +91 94054 51507
+                  +91 94201 70156
                 </a>
               </div>
 
@@ -322,7 +322,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
                 <MapPin className="w-4 h-4 text-[#2E3F8C] shrink-0 mt-0.5" />
                 <div>
                   <span className="font-semibold">Address: </span>
-                  <span>Snehpriya Residency, Vengurla-Belgaum Highway, Kolgaon, Sawantwadi, Sindhudurg, Maharashtra 416510</span>
+                  <span>Mangalmurti Apartment, House No 825, Varawade, Achara Road, Kankavli - 416602</span>
                 </div>
               </div>
             </div>

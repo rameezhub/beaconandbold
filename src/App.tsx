@@ -143,15 +143,15 @@ export function App() {
     'url': 'https://beaconandbolt.com',
     'address': {
       '@type': 'PostalAddress',
-      'streetAddress': 'Snehpriya Residency, Vengurla-Belgaum Highway, Kolgaon',
-      'addressLocality': 'Sawantwadi',
+      'streetAddress': 'Mangalmurti Apartment, House No 825, Varawade, Achara Road',
+      'addressLocality': 'Kankavli',
       'addressRegion': 'Maharashtra',
-      'postalCode': '416510',
+      'postalCode': '416602',
       'addressCountry': 'IN'
     },
-    'telephone': '+91-94054-51507',
+    'telephone': '+91-94201-70156',
     'email': 'beaconandbolt@gmail.com',
-    'areaServed': ['Goa', 'Sindhudurg', 'Sawantwadi', 'Maharashtra', 'India']
+    'areaServed': ['Goa', 'Sindhudurg', 'Kankavli', 'Maharashtra', 'India']
   };
 
   const isIndustryRoute = currentPath.startsWith('/industries/');

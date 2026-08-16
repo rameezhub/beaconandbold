@@ -222,7 +222,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({
               {article.ctaButtonText}
             </button>
             <a
-              href={`https://wa.me/919405451507?text=${whatsappMessage}`}
+              href={`https://wa.me/919420170156?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#25D366] hover:bg-[#1EBE5D] text-white px-6 py-3 rounded-lg font-bold text-xs transition-colors shadow-md text-center flex items-center justify-center gap-2"
