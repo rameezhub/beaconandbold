@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beacon &amp; Bolt | Redirecting...</title>
+    <script>
+      // Single Page Apps for GitHub Pages
+      // When a deep-link is requested (e.g. /industries/real-estate-property), GitHub Pages serves this 404.html.
+      // We store the requested path in sessionStorage so that upon landing on index.html,
+      // the application establishes Home ('/') as the root history entry via history.replaceState()
+      // BEFORE pushing the target deep-link via history.pushState().
+      // This prevents the Android/browser back-button bug where users were kicked out to external apps (e.g., WhatsApp).
+      var path = window.location.pathname + window.location.search + window.location.hash;
+      sessionStorage.setItem('redirectPath', path);
+      window.location.replace('/');
+    </script>
+  </head>
+  <body style="font-family: sans-serif; background-color: #FCFCFD; color: #42403F; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
+    <div style="text-align: center;">
+      <p style="font-size: 16px; font-weight: 600; color: #2E3F8C;">Redirecting to Beacon &amp; Bolt...</p>
+    </div>
+  </body>
+</html>

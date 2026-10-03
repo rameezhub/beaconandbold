@@ -71,14 +71,15 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({
                 </div>
               </div>
 
-              {/* Card Footer Button */}
-              <button
-                onClick={() => onNavigate(`/industries/${study.industrySlug}` as RoutePath)}
-                className="w-full pt-3 text-xs font-bold text-white hover:text-[#D8DCF4] flex items-center justify-between border-t border-white/15 cursor-pointer"
+              {/* Card Footer Link */}
+              <a
+                href={`/industries/${study.industrySlug}`}
+                onClick={(e) => { e.preventDefault(); onNavigate(`/industries/${study.industrySlug}` as RoutePath); }}
+                className="w-full pt-3 text-xs font-bold text-white hover:text-[#D8DCF4] flex items-center justify-between border-t border-white/15 cursor-pointer group-hover:underline"
               >
                 <span>View Industry Case Study</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
             </div>
           ))}
         </div>

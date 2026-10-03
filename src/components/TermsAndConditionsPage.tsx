@@ -1,5 +1,6 @@
 import React from 'react';
 import { RoutePath } from '../types';
+import { SEO } from './SEO';
 import { ChevronLeft, FileText, Mail, Phone, MapPin, AlertCircle, ShieldAlert, Scale, CheckCircle2, Lock, Camera, Megaphone } from 'lucide-react';
 import { trackOutboundClick, trackPhoneClick } from '../utils/analytics';
 
@@ -10,6 +11,12 @@ interface TermsAndConditionsPageProps {
 export const TermsAndConditionsPage: React.FC<TermsAndConditionsPageProps> = ({ onNavigate }) => {
   return (
     <div className="pt-24 pb-20 bg-[#FCFCFD]">
+      <SEO
+        title="Terms & Conditions | Beacon & Bolt"
+        description="Official Terms of Service and commercial agreement governing Beacon & Bolt agency engagements, deliverables, and service scopes."
+        canonical="https://beaconandbolt.com/terms-of-service"
+        robots="index, follow"
+      />
       {/* Top Breadcrumb Navigation */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <button

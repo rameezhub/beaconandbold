@@ -1,77 +1,194 @@
 <!doctype html>
 <html lang="en">
   <!--
-    TODO before launch:
-    1. Replace GTM-XXXXXXX with real GTM Container ID
-    2. Replace YOUR_PIXEL_ID with real Meta Pixel ID
-    3. Configure GA4 property inside GTM (tag: GA4 Configuration)
-    4. Verify domain in Google Search Console (DNS or HTML tag method) and submit /sitemap.xml
-    5. Set up GTM triggers/tags for each dataLayer event above to fire into GA4 + Meta Pixel
+    Beacon & Bolt — Performance Marketing, Brand Strategy & Digital Growth Agency
+    Tracking Setup (Loaded conditionally upon user Cookie Consent):
+    1. VITE_GA_MEASUREMENT_ID — Environment variable for Google Analytics 4
+    2. VITE_GTM_ID — Environment variable for Google Tag Manager
+    3. VITE_META_PIXEL_ID — Environment variable for Meta Pixel
+    4. Google Search Console Verification tag configured below
   -->
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Beacon & Bolt | Real Estate & Property Strategy</title>
+    <title>Beacon & Bolt | Digital Marketing & Branding Agency</title>
+    <meta name="description" content="Beacon & Bolt is a full-service digital marketing and brand strategy agency. We deliver brand identity, SEO, performance marketing, creative production, and web growth across Goa, Sindhudurg, Maharashtra, and India." />
+    <link rel="canonical" href="https://beaconandbolt.com/" />
+    <meta name="robots" content="index, follow" />
+    <link rel="describedby" href="/llms.txt" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://beaconandbolt.com/" />
+    <meta property="og:title" content="Beacon & Bolt | Digital Marketing & Branding Agency" />
+    <meta property="og:description" content="Scaling Digital Momentum for Modern Brands. Full-service digital marketing, brand identity, performance marketing, and creative production." />
+    <meta property="og:image" content="https://beaconandbolt.com/og-image.jpg" />
+    <meta property="og:site_name" content="Beacon & Bolt" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://beaconandbolt.com/" />
+    <meta name="twitter:title" content="Beacon & Bolt | Digital Marketing & Branding Agency" />
+    <meta name="twitter:description" content="Scaling Digital Momentum for Modern Brands. Full-service digital marketing, brand identity, performance marketing, and creative production." />
+    <meta name="twitter:image" content="https://beaconandbolt.com/og-image.jpg" />
 
     <!-- Google Search Console Verification -->
-    <!-- TODO: Replace content value with real verification code from Search Console (Settings > Ownership verification > HTML tag method) before launch -->
+    <!-- Replace content value with real verification code from Search Console when deploying -->
     <meta name="google-site-verification" content="REPLACE_WITH_VERIFICATION_CODE" />
 
-    <!-- Google Analytics 4 -->
-    <!-- TODO: Replace G-XXXXXXXXXX with real GA4 Measurement ID before launch -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    <!-- End Google Analytics 4 -->
-
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
-    <!-- End Google Tag Manager (Placeholder ID: GTM-XXXXXXX - replace before launch) -->
-
-    <!-- GA4 Note: GA4 is managed through Google Tag Manager (GTM) Configuration Tag -->
-
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'YOUR_PIXEL_ID'); // Replace YOUR_PIXEL_ID with real Meta Pixel ID before launch
-    fbq('track', 'PageView');
-    </script>
-    <!-- End Meta Pixel Code -->
-
-    <!-- Structured Data (JSON-LD) -->
+    <!-- Structured Data (JSON-LD Organization & MarketingAgency Entity Graph) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "MarketingAgency",
-      "name": "Beacon & Bolt",
-      "description": "Scaling Digital Momentum for Modern Brands. Full-service branding, marketing, and growth agency.",
-      "url": "https://beaconandbolt.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Mangalmurti Apartment, House No 825, Varawade, Achara Road",
-        "addressLocality": "Kankavli",
-        "addressRegion": "Maharashtra",
-        "postalCode": "416602",
-        "addressCountry": "IN"
-      },
-      "telephone": "+91-94201-70156",
-      "email": "beaconandbolt@gmail.com",
-      "areaServed": ["Goa", "Sindhudurg", "Kankavli", "Maharashtra", "India"]
+      "@graph": [
+        {
+          "@type": "MarketingAgency",
+          "@id": "https://beaconandbolt.com/#organization",
+          "name": "Beacon & Bolt",
+          "alternateName": "Beacon and Bolt Agency",
+          "description": "Full-service digital marketing, branding, performance marketing, and creative growth agency.",
+          "url": "https://beaconandbolt.com",
+          "logo": "https://beaconandbolt.com/src/assets/logo.jpg",
+          "image": "https://beaconandbolt.com/src/assets/logo.jpg",
+          "telephone": "+91-94201-70156",
+          "email": "beaconandbolt@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Mangalmurti Apartment, House No 825, Varawade, Achara Road",
+            "addressLocality": "Kankavli",
+            "addressRegion": "Maharashtra",
+            "postalCode": "416602",
+            "addressCountry": "IN"
+          },
+          "areaServed": [
+            {
+              "@type": "AdministrativeArea",
+              "name": "Goa"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Sindhudurg"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Maharashtra"
+            },
+            {
+              "@type": "Country",
+              "name": "India"
+            }
+          ],
+          "knowsAbout": [
+            "Digital Marketing",
+            "Brand Strategy",
+            "Search Engine Optimization (SEO)",
+            "Performance Marketing",
+            "Social Media Marketing",
+            "Brand Identity",
+            "Website Development",
+            "Conversion Optimization"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Agency Growth & Brand Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Brand Strategy & Positioning"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Brand Identity & Visual Systems"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Digital Marketing & SEO"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Performance Marketing & Paid Ads (Meta & Google)"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Technology & Web Development"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://beaconandbolt.com/#person-priyanka",
+          "name": "Priyanka Shirodkar",
+          "jobTitle": "Brand Strategist & Creative Director",
+          "worksFor": {
+            "@id": "https://beaconandbolt.com/#organization"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://beaconandbolt.com/#person-arjun",
+          "name": "Arjun Rawool",
+          "jobTitle": "Performance Marketing & Paid Acquisition Lead",
+          "worksFor": {
+            "@id": "https://beaconandbolt.com/#organization"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://beaconandbolt.com/#person-shubham",
+          "name": "Shubham Rawool",
+          "jobTitle": "Media Production & Visual Assets Lead",
+          "worksFor": {
+            "@id": "https://beaconandbolt.com/#organization"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://beaconandbolt.com/#person-rameez",
+          "name": "Rameez Sarguru",
+          "jobTitle": "Technology, Web & Analytics Lead",
+          "worksFor": {
+            "@id": "https://beaconandbolt.com/#organization"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://beaconandbolt.com/#website",
+          "url": "https://beaconandbolt.com",
+          "name": "Beacon & Bolt",
+          "publisher": {
+            "@id": "https://beaconandbolt.com/#organization"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://beaconandbolt.com/#webpage",
+          "url": "https://beaconandbolt.com/",
+          "name": "Beacon & Bolt | Digital Marketing & Branding Agency",
+          "isPartOf": {
+            "@id": "https://beaconandbolt.com/#website"
+          },
+          "about": {
+            "@id": "https://beaconandbolt.com/#organization"
+          },
+          "description": "Scaling Digital Momentum for Modern Brands. Full-service digital marketing, brand identity, performance marketing, and creative production."
+        }
+      ]
     }
     </script>
     <!-- End Structured Data -->
@@ -83,17 +200,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
   </head>
   <body class="bg-[#FCFCFD] text-[#1d1b1a] font-sans antialiased selection:bg-[#2e3f8c] selection:text-white">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <!-- Meta Pixel (noscript) -->
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel (noscript) -->
-
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

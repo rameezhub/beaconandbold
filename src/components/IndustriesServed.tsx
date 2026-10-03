@@ -37,14 +37,15 @@ export const IndustriesServed: React.FC<IndustriesServedProps> = ({ onNavigate }
         {/* Clean Pill Grid */}
         <div className="flex flex-wrap justify-center items-center gap-3.5 max-w-3xl mx-auto">
           {industryPills.map((pill, idx) => (
-            <button
+            <a
               key={idx}
-              onClick={() => onNavigate(pill.path)}
+              href={pill.path}
+              onClick={(e) => { e.preventDefault(); onNavigate(pill.path); }}
               className="bg-white border border-[#BAB8BE]/50 hover:border-[#2E3F8C] hover:bg-[#EEF2FF] text-[#42403F] hover:text-[#2E3F8C] px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-2xs flex items-center gap-2 cursor-pointer group"
             >
               <span>{pill.label}</span>
               <ArrowUpRight className="w-3.5 h-3.5 text-[#767BA5] group-hover:text-[#2E3F8C] transition-colors" />
-            </button>
+            </a>
           ))}
         </div>
 

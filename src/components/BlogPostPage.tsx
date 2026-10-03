@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { getBlogArticleBySlug, BLOG_ARTICLES } from '../data/blogArticles';
 import { RoutePath } from '../types';
+import { SEO } from './SEO';
 import { ArrowLeft, ArrowRight, Clock, Calendar, Share2, MessageCircle, ChevronRight, CheckCircle2, Award, Sparkles } from 'lucide-react';
 import { trackCtaClick } from '../utils/analytics';
 
@@ -17,32 +18,15 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({
 }) => {
   const article = getBlogArticleBySlug(slug);
 
-  // Dynamic meta title and description updates for Google Indexing
-  useEffect(() => {
-    if (article) {
-      document.title = `${article.metaTitle}`;
-      
-      let metaDescription = document.querySelector('meta[name="description"]');
-      if (!metaDescription) {
-        metaDescription = document.createElement('meta');
-        metaDescription.setAttribute('name', 'description');
-        document.head.appendChild(metaDescription);
-      }
-      metaDescription.setAttribute('content', article.metaDescription);
-
-      let metaKeywords = document.querySelector('meta[name="keywords"]');
-      if (!metaKeywords) {
-        metaKeywords = document.createElement('meta');
-        metaKeywords.setAttribute('name', 'keywords');
-        document.head.appendChild(metaKeywords);
-      }
-      metaKeywords.setAttribute('content', article.keywords.join(', '));
-    }
-  }, [article]);
-
   if (!article) {
     return (
       <div className="pt-32 pb-24 text-center max-w-md mx-auto px-4 space-y-4">
+        <SEO
+          title="Article Not Found | Beacon & Bolt"
+          description="The requested blog article could not be found."
+          canonical="https://beaconandbolt.com/blog"
+          robots="noindex, follow"
+        />
         <h1 className="text-2xl font-bold text-[#42403F]">Article Not Found</h1>
         <p className="text-sm text-[#42403F]/70">The requested intelligence article could not be located.</p>
         <button
@@ -77,7 +61,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({
       'name': 'Beacon & Bolt',
       'logo': {
         '@type': 'ImageObject',
-        'url': 'https://beaconandbolt.com/logo.jpg'
+        'url': 'https://beaconandbolt.com/src/assets/logo.jpg'
       }
     },
     'keywords': article.keywords.join(', ')
@@ -93,11 +77,18 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({
 
   return (
     <div className="pt-24 pb-20 bg-[#FCFCFD] min-h-screen">
-      
-      {/* Schema Markup for AI and Search Crawlers */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      <SEO
+        title={article.metaTitle}
+        description={article.metaDescription}
+        canonical={`https://beaconandbolt.com/blog/${article.slug}`}
+        ogType="article"
+        keywords={article.keywords}
+        schema={articleSchema}
+        breadcrumbs={[
+          { name: 'Home', url: 'https://beaconandbolt.com/' },
+          { name: 'Blog', url: 'https://beaconandbolt.com/blog' },
+          { name: article.title, url: `https://beaconandbolt.com/blog/${article.slug}` },
+        ]}
       />
 
       <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-10">

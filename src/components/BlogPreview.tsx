@@ -26,13 +26,14 @@ export const BlogPreview: React.FC<BlogPreviewProps> = ({ onNavigate }) => {
               Latest Growth & Branding Insights
             </h2>
           </div>
-          <button
-            onClick={() => onNavigate('/blog' as RoutePath)}
+          <a
+            href="/blog"
+            onClick={(e) => { e.preventDefault(); onNavigate('/blog' as RoutePath); }}
             className="text-xs font-bold text-[#2E3F8C] hover:text-[#142775] flex items-center gap-1.5 group cursor-pointer self-start sm:self-auto"
           >
             <span>Explore All 8 Articles</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
+          </a>
         </div>
 
         {/* 3 Featured Cards */}
@@ -64,13 +65,14 @@ export const BlogPreview: React.FC<BlogPreviewProps> = ({ onNavigate }) => {
               </div>
 
               <div className="pt-4 border-t border-[#BAB8BE]/20 flex items-center justify-between">
-                <button
-                  onClick={() => onNavigate(`/blog/${article.slug}` as RoutePath)}
+                <a
+                  href={`/blog/${article.slug}`}
+                  onClick={(e) => { e.preventDefault(); onNavigate(`/blog/${article.slug}` as RoutePath); }}
                   className="text-xs font-bold text-[#2E3F8C] group-hover:text-[#142775] flex items-center gap-1.5 cursor-pointer"
                 >
                   <span>Read More</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </a>
               </div>
             </article>
           ))}

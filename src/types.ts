@@ -10,6 +10,7 @@ export type RoutePath =
   | '/privacy-policy'
   | '/terms-and-conditions'
   | '/terms-of-service'
+  | '/cookie-policy'
   | '/industries/tourism-travel'
   | '/industries/hotels-hospitality'
   | '/industries/real-estate-property'

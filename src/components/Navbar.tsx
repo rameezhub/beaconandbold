@@ -55,15 +55,20 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav aria-label="Main Navigation" className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => {
             const isActive = link.label === 'Blog'
               ? currentPath.startsWith('/blog')
               : activeTab === link.label && currentPath === '/';
+            const targetHref = link.hash ? `${link.path}#${link.hash}` : link.path;
             return (
-              <button
+              <a
                 key={link.label}
-                onClick={() => handleLinkClick(link.label, link.path, link.hash)}
+                href={targetHref}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLinkClick(link.label, link.path, link.hash);
+                }}
                 className={`relative py-1 text-sm font-medium transition-colors cursor-pointer font-body ${
                   isActive
                     ? 'text-[#2E3F8C] font-semibold'
@@ -74,7 +79,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {isActive && (
                   <span className="absolute bottom-0 left-0 w-full h-[2.5px] bg-[#2E3F8C] rounded-full" />
                 )}
-              </button>
+              </a>
             );
           })}
         </nav>
@@ -131,20 +136,27 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-b border-[#BAB8BE]/30 px-6 py-6 shadow-xl space-y-3 animate-in fade-in">
-          {navLinks.map((link) => (
-            <button
-              key={link.label}
-              onClick={() => handleLinkClick(link.label, link.path, link.hash)}
-              className={`block w-full text-left py-2.5 px-3 rounded-lg text-base font-medium font-body ${
-                activeTab === link.label
-                  ? 'bg-[#EEF2FF] text-[#2E3F8C] font-semibold'
-                  : 'text-[#42403F] hover:bg-[#D8DCF4]/30 hover:text-[#2E3F8C]'
-              }`}
-            >
-              {link.label}
-            </button>
-          ))}
+        <nav aria-label="Mobile Navigation" className="lg:hidden bg-white border-b border-[#BAB8BE]/30 px-6 py-6 shadow-xl space-y-3 animate-in fade-in">
+          {navLinks.map((link) => {
+            const targetHref = link.hash ? `${link.path}#${link.hash}` : link.path;
+            return (
+              <a
+                key={link.label}
+                href={targetHref}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLinkClick(link.label, link.path, link.hash);
+                }}
+                className={`block w-full text-left py-2.5 px-3 rounded-lg text-base font-medium font-body ${
+                  activeTab === link.label
+                    ? 'bg-[#EEF2FF] text-[#2E3F8C] font-semibold'
+                    : 'text-[#42403F] hover:bg-[#D8DCF4]/30 hover:text-[#2E3F8C]'
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
           <div className="pt-3 border-t border-[#BAB8BE]/20">
             <button
               onClick={() => {
@@ -157,7 +169,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );

@@ -81,34 +81,58 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onRequestQuote }) =>
             </h3>
             <ul className="space-y-2 text-xs text-white/80">
               <li>
-                <button onClick={() => onNavigate('/', 'hero')} className="hover:text-white transition-colors cursor-pointer">
+                <a
+                  href="/#hero"
+                  onClick={(e) => { e.preventDefault(); onNavigate('/', 'hero'); }}
+                  className="hover:text-white transition-colors cursor-pointer"
+                >
                   Home
-                </button>
+                </a>
               </li>
               <li>
-                <button onClick={() => onNavigate('/', 'about')} className="hover:text-white transition-colors cursor-pointer">
+                <a
+                  href="/#about"
+                  onClick={(e) => { e.preventDefault(); onNavigate('/', 'about'); }}
+                  className="hover:text-white transition-colors cursor-pointer"
+                >
                   About Us
-                </button>
+                </a>
               </li>
               <li>
-                <button onClick={() => onNavigate('/blog')} className="hover:text-white transition-colors cursor-pointer font-semibold text-white">
+                <a
+                  href="/blog"
+                  onClick={(e) => { e.preventDefault(); onNavigate('/blog'); }}
+                  className="hover:text-white transition-colors cursor-pointer font-semibold text-white"
+                >
                   Strategic Blog
-                </button>
+                </a>
               </li>
               <li>
-                <button onClick={() => onNavigate('/', 'work')} className="hover:text-white transition-colors cursor-pointer">
+                <a
+                  href="/#work"
+                  onClick={(e) => { e.preventDefault(); onNavigate('/', 'work'); }}
+                  className="hover:text-white transition-colors cursor-pointer"
+                >
                   Case Studies &amp; Work
-                </button>
+                </a>
               </li>
               <li>
-                <button onClick={() => onNavigate('/', 'faq')} className="hover:text-white transition-colors cursor-pointer">
+                <a
+                  href="/#faq"
+                  onClick={(e) => { e.preventDefault(); onNavigate('/', 'faq'); }}
+                  className="hover:text-white transition-colors cursor-pointer"
+                >
                   FAQ
-                </button>
+                </a>
               </li>
               <li>
-                <button onClick={() => onNavigate('/', 'contact')} className="hover:text-white transition-colors cursor-pointer">
+                <a
+                  href="/#contact"
+                  onClick={(e) => { e.preventDefault(); onNavigate('/', 'contact'); }}
+                  className="hover:text-white transition-colors cursor-pointer"
+                >
                   Contact
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -121,13 +145,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onRequestQuote }) =>
             <ul className="space-y-2 text-xs text-white/80">
               {industryLinks.map((link) => (
                 <li key={link.path}>
-                  <button
-                    onClick={() => onNavigate(link.path)}
+                  <a
+                    href={link.path}
+                    onClick={(e) => { e.preventDefault(); onNavigate(link.path); }}
                     className="hover:text-white transition-colors flex items-center gap-1"
                   >
                     <span>{link.label}</span>
                     <ArrowUpRight className="w-3 h-3 text-white/50" />
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -160,19 +185,40 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onRequestQuote }) =>
             Serving Goa, Sindhudurg & nearby
           </p>
 
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => onNavigate('/privacy-policy')}
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+            <a
+              href="/privacy-policy"
+              onClick={(e) => { e.preventDefault(); onNavigate('/privacy-policy'); }}
               className="hover:text-white cursor-pointer transition-colors"
             >
               Privacy Policy
-            </button>
+            </a>
             <span>•</span>
-            <button
-              onClick={() => onNavigate('/terms-of-service')}
+            <a
+              href="/terms-of-service"
+              onClick={(e) => { e.preventDefault(); onNavigate('/terms-of-service'); }}
               className="hover:text-white cursor-pointer transition-colors"
             >
               Terms &amp; Conditions
+            </a>
+            <span>•</span>
+            <a
+              href="/cookie-policy"
+              onClick={(e) => { e.preventDefault(); onNavigate('/cookie-policy'); }}
+              className="hover:text-white cursor-pointer transition-colors"
+            >
+              Cookie Policy
+            </a>
+            <span>•</span>
+            <button
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new CustomEvent('openCookiePreferences'));
+                }
+              }}
+              className="hover:text-white cursor-pointer transition-colors underline decoration-white/40 underline-offset-2"
+            >
+              Cookie Preferences
             </button>
           </div>
         </div>

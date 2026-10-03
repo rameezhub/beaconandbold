@@ -1,7 +1,8 @@
 import React from 'react';
 import { INDUSTRY_PAGES_DATA, SERVICES_LIST, CASE_STUDIES_LIST, REAL_ESTATE_CORE_PILLARS } from '../data/agencyData';
 import { RoutePath } from '../types';
-import { CheckCircle2, ArrowRight, Award, ChevronLeft, Building, Compass, Palette, Megaphone } from 'lucide-react';
+import { SEO } from './SEO';
+import { CheckCircle2, ArrowRight, Award, ChevronLeft, ChevronRight, Building, Compass, Palette, Megaphone } from 'lucide-react';
 import { ServiceCategoryBlock } from './ServiceCategoryBlock';
 import { trackCtaClick, trackMetaPixelCustomEvent, getStoredUtmParams } from '../utils/analytics';
 
@@ -131,18 +132,57 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({
     { title: 'Consulting', desc: 'Project launch advisory, pricing strategy, & sales velocity optimization.', deliverables: ['Pricing Strategy', 'Launch Advisory'] }
   ];
 
+  const pageTitle = `${industry.title} Growth & Marketing Agency | Beacon & Bolt`;
+  const pageDescription = `Specialized branding, digital marketing, SEO, and performance customer acquisition for the ${industry.title.toLowerCase()} sector by Beacon & Bolt.`;
+  const canonicalUrl = `https://beaconandbolt.com/industries/${slug}`;
+
+  const industrySchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    'name': `${industry.title} Marketing & Growth Solutions`,
+    'provider': {
+      '@type': 'Organization',
+      'name': 'Beacon & Bolt',
+      'url': 'https://beaconandbolt.com'
+    },
+    'serviceType': 'Digital Marketing and Brand Strategy',
+    'description': industry.description,
+    'areaServed': ['Goa', 'Sindhudurg', 'Maharashtra', 'India']
+  };
+
   return (
     <div className="pt-24 pb-20 bg-[#FCFCFD]">
+      <SEO
+        title={pageTitle}
+        description={pageDescription}
+        canonical={canonicalUrl}
+        schema={industrySchema}
+        breadcrumbs={[
+          { name: 'Home', url: 'https://beaconandbolt.com/' },
+          { name: 'Industries', url: 'https://beaconandbolt.com/#industries' },
+          { name: industry.title, url: canonicalUrl },
+        ]}
+      />
       
-      {/* Back to Home Breadcrumb */}
+      {/* Semantic Breadcrumb Navigation */}
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-10 mb-6">
-        <button
-          onClick={() => onNavigate('/')}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#767BA5] hover:text-[#2E3F8C] transition-colors cursor-pointer"
-        >
-          <ChevronLeft className="w-4 h-4" />
-          <span>Back to Overview</span>
-        </button>
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-[#767BA5] font-medium">
+          <button
+            onClick={() => onNavigate('/')}
+            className="hover:text-[#2E3F8C] transition-colors cursor-pointer"
+          >
+            Home
+          </button>
+          <ChevronRight className="w-3.5 h-3.5" />
+          <button
+            onClick={() => onNavigate('/', 'industries')}
+            className="hover:text-[#2E3F8C] transition-colors cursor-pointer"
+          >
+            Sectors
+          </button>
+          <ChevronRight className="w-3.5 h-3.5" />
+          <span className="text-[#2E3F8C] font-bold">{industry.title}</span>
+        </nav>
       </div>
 
       {/* Industry Hero Section */}

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { BLOG_ARTICLES, FullBlogArticle } from '../data/blogArticles';
+import React, { useState } from 'react';
+import { BLOG_ARTICLES } from '../data/blogArticles';
 import { RoutePath } from '../types';
-import { ArrowRight, Clock, Calendar, BookOpen, Sparkles, ChevronRight, Tag } from 'lucide-react';
+import { SEO } from './SEO';
+import { ArrowRight, Clock, Calendar, BookOpen, ChevronRight, Tag } from 'lucide-react';
 
 interface BlogListPageProps {
   onNavigate: (path: RoutePath, hash?: string) => void;
@@ -13,22 +14,6 @@ export const BlogListPage: React.FC<BlogListPageProps> = ({
   onRequestQuote,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
-
-  // Dynamic document metadata for SEO
-  useEffect(() => {
-    document.title = 'Strategic Growth & Marketing Blog | Beacon & Bolt';
-    
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute(
-      'content',
-      'Actionable guides on online branding, performance marketing, consumer psychology, customer journey mapping, and conversion design from Beacon & Bolt.'
-    );
-  }, []);
 
   const categories = ['All', ...Array.from(new Set(BLOG_ARTICLES.map((a) => a.category)))];
 
@@ -47,7 +32,7 @@ export const BlogListPage: React.FC<BlogListPageProps> = ({
       'name': 'Beacon & Bolt',
       'logo': {
         '@type': 'ImageObject',
-        'url': 'https://beaconandbolt.com/logo.jpg'
+        'url': 'https://beaconandbolt.com/src/assets/logo.jpg'
       }
     },
     'blogPost': BLOG_ARTICLES.map((article) => ({
@@ -65,10 +50,15 @@ export const BlogListPage: React.FC<BlogListPageProps> = ({
 
   return (
     <div className="pt-24 pb-20 bg-[#FCFCFD] min-h-screen">
-      {/* Blog Schema Markup */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogListSchema) }}
+      <SEO
+        title="Strategic Growth & Marketing Blog | Beacon & Bolt"
+        description="Actionable guides on online branding, performance marketing, consumer psychology, customer journey mapping, and conversion design from Beacon & Bolt."
+        canonical="https://beaconandbolt.com/blog"
+        schema={blogListSchema}
+        breadcrumbs={[
+          { name: 'Home', url: 'https://beaconandbolt.com/' },
+          { name: 'Blog', url: 'https://beaconandbolt.com/blog' },
+        ]}
       />
 
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-10">

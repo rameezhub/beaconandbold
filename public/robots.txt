@@ -1,0 +1,35 @@
+# Robots.txt for Beacon & Bolt (https://beaconandbolt.com)
+# Configured for standard search engines, AI search engines, and modern agent discovery.
+
+# OpenAI Search & ChatGPT Agents
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+# Google Search & AI Overviews
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity AI Search
+User-agent: PerplexityBot
+Allow: /
+
+# Anthropic Claude Search
+User-agent: ClaudeBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+
+# Default for all other web and AI crawlers
+User-agent: *
+Allow: /
+
+Sitemap: https://beaconandbolt.com/sitemap.xml

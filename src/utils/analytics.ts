@@ -1,11 +1,12 @@
 /**
  * Analytics, DataLayer & Meta Pixel Tracking Utility
  * 
- * Pushes structured event payloads to window.dataLayer for Google Tag Manager (GTM)
- * and fires custom conversion events into Meta Pixel (window.fbq) with persistent UTM data.
+ * Consent-Aware: Only dispatches third-party analytics (dataLayer / GA4) and advertising events (fbq / Meta Pixel)
+ * when the user has explicitly granted the corresponding consent category via the Cookie Consent Manager.
  */
 
 import { getStoredUtmParams, UtmParameters } from './utm';
+import { hasAnalyticsConsent, hasMarketingConsent } from './cookieConsent';
 
 declare global {
   interface Window {
@@ -16,28 +17,46 @@ declare global {
 
 /**
  * Pushes generic events to window.dataLayer with automatic UTM attribution merging.
+ * Gated by Analytics consent.
  */
 export const trackEvent = (eventName: string, params: Record<string, unknown> = {}) => {
-  if (typeof window !== 'undefined') {
-    const utm = getStoredUtmParams();
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: eventName,
-      timestamp: new Date().toISOString(),
-      ...utm,
-      ...params,
-    });
+  if (typeof window === 'undefined') return;
+
+  // Gate: Only dispatch if user has granted Analytics consent
+  if (!hasAnalyticsConsent()) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.debug(`[Analytics Blocked - No Consent] ${eventName}`, params);
+    }
+    return;
   }
+
+  const utm = getStoredUtmParams();
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: eventName,
+    timestamp: new Date().toISOString(),
+    ...utm,
+    ...params,
+  });
 };
 
 /**
  * Fires custom conversion events to Meta Pixel (fbq) and mirrors to dataLayer.
+ * Gated by Marketing consent.
  */
 export const trackMetaPixelCustomEvent = (
   eventName: string,
   params: Record<string, unknown> = {}
 ) => {
   if (typeof window === 'undefined') return;
+
+  // Gate: Only dispatch if user has granted Marketing consent
+  if (!hasMarketingConsent()) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.debug(`[Meta Pixel Blocked - No Consent] ${eventName}`, params);
+    }
+    return;
+  }
 
   const utm = getStoredUtmParams();
   const eventPayload = {
@@ -54,8 +73,10 @@ export const trackMetaPixelCustomEvent = (
     }
   }
 
-  // 2. Also log to dataLayer for GTM tags
-  trackEvent(`pixel_${eventName}`, eventPayload);
+  // 2. Also log to dataLayer for GTM tags (if analytics consent granted)
+  if (hasAnalyticsConsent()) {
+    trackEvent(`pixel_${eventName}`, eventPayload);
+  }
 
   if (process.env.NODE_ENV !== 'production') {
     console.log(`[Meta Pixel Event Fired] ${eventName}`, eventPayload);

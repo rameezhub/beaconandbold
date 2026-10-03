@@ -1,5 +1,6 @@
 import React from 'react';
 import { RoutePath } from '../types';
+import { SEO } from './SEO';
 import { ChevronLeft, Shield, Mail, Phone, MapPin, Lock, FileCheck, Scale } from 'lucide-react';
 import { trackOutboundClick, trackPhoneClick } from '../utils/analytics';
 
@@ -10,6 +11,12 @@ interface PrivacyPolicyPageProps {
 export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate }) => {
   return (
     <div className="pt-24 pb-20 bg-[#FCFCFD]">
+      <SEO
+        title="Privacy Policy | Beacon & Bolt"
+        description="Official Privacy Policy of Beacon & Bolt. Learn how we handle client data, communications, website cookies, and information security."
+        canonical="https://beaconandbolt.com/privacy-policy"
+        robots="index, follow"
+      />
       {/* Top Breadcrumb Navigation */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <button
